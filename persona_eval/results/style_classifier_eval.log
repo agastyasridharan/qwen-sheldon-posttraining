@@ -1,0 +1,100 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+read 1000 rows from data/train_gold.jsonl
+read 1000 rows from gens/base_train.jsonl
+read 502 rows from data/heldout_gold.jsonl
+train gold: dropped 28 rows whose source_id is in the 502-row held-out set; 972 remain
+train: 972 paired prompts
+train gold: 972 texts, 219 truncated to 400 tokens
+train base: 972 texts, 0 truncated to 400 tokens
+train base responses at the 400-token cap: 361 of 972
+training rows: 1944 (972 gold, 972 base)
+read 502 rows from data/heldout_gold.jsonl
+read 502 rows from gens/heldout_base_eval.jsonl
+eval base: 502 paired prompts
+read 502 rows from gens/heldout_v3b_eval.jsonl
+eval ft: 502 paired prompts
+eval prompts also in train (by prompt text or dataset id): 0
+eval gold: 502 texts, 112 truncated to 400 tokens
+eval base: 502 texts, 0 truncated to 400 tokens
+eval ft: 502 texts, 0 truncated to 400 tokens
+read 40 rows from gens/ood_base.jsonl
+read 40 rows from gens/ood_v3b.jsonl
+ood ft: 40 paired prompts
+ood base: 40 texts, 0 truncated to 400 tokens
+ood ft: 40 texts, 0 truncated to 400 tokens
+
+=== run: raw ===
+best C = 0.3; CV accuracy = 1.0000 (oof 1.0000); uncapped pairs (611): 1.0000
+  C=0.01   acc=0.9990 +/- 0.0013
+  C=0.03   acc=0.9990 +/- 0.0013
+  C=0.1    acc=0.9995 +/- 0.0010
+  C=0.3    acc=1.0000 +/- 0.0000
+  C=1      acc=1.0000 +/- 0.0000
+  C=3      acc=1.0000 +/- 0.0000
+  C=10     acc=1.0000 +/- 0.0000
+  C=30     acc=1.0000 +/- 0.0000
+  C=100    acc=1.0000 +/- 0.0000
+eval accuracy gold-vs-base: 0.9980 (1004 rows)
+mean P(Sheldon) gold: 0.8063 [0.8005, 0.8117] (n=502); frac >= 0.5: 1.0000
+mean P(Sheldon) base: 0.2256 [0.2189, 0.2319] (n=502); frac >= 0.5: 0.0040
+mean P(Sheldon) ft: 0.8247 [0.8196, 0.8301] (n=502); frac >= 0.5: 1.0000
+top positive: 'word__which', 'word__not', 'word__is', 'word__which is', 'word__my', 'word__because', 'word__me', 'char__ i ', 'word__leonard', 'word__is not'
+top negative: 'char__ **', 'char__ - ', 'word__sure', 'word__might', 'word__can', 'char__** ', 'word__or', 'word__some', 'char__**:', 'char__**: '
+
+=== run: masked ===
+best C = 1; CV accuracy = 1.0000 (oof 1.0000); uncapped pairs (611): 1.0000
+  C=0.01   acc=0.9990 +/- 0.0013
+  C=0.03   acc=0.9990 +/- 0.0013
+  C=0.1    acc=0.9995 +/- 0.0010
+  C=0.3    acc=0.9995 +/- 0.0010
+  C=1      acc=1.0000 +/- 0.0000
+  C=3      acc=1.0000 +/- 0.0000
+  C=10     acc=1.0000 +/- 0.0000
+  C=30     acc=1.0000 +/- 0.0000
+  C=100    acc=0.9995 +/- 0.0010
+eval accuracy gold-vs-base: 0.9980 (1004 rows)
+mean P(Sheldon) gold: 0.8995 [0.8942, 0.9046] (n=502); frac >= 0.5: 1.0000
+mean P(Sheldon) base: 0.1285 [0.1222, 0.1350] (n=502); frac >= 0.5: 0.0040
+mean P(Sheldon) ft: 0.9122 [0.9075, 0.9170] (n=502); frac >= 0.5: 1.0000
+top positive: 'word__name', 'word__which', 'word__is', 'word__not', 'word__which is', 'word__my', 'word__because', 'char__ i ', 'word__me', 'char__name'
+top negative: 'word__sure', 'char__ **', 'char__ - ', 'word__might', 'word__can', 'char__** ', 'word__or', 'word__some', 'char__**:', 'char__**: '
+
+=== run: strict ===
+best C = 0.3; CV accuracy = 1.0000 (oof 1.0000); uncapped pairs (611): 1.0000
+  C=0.01   acc=0.9990 +/- 0.0013
+  C=0.03   acc=0.9995 +/- 0.0010
+  C=0.1    acc=0.9995 +/- 0.0010
+  C=0.3    acc=1.0000 +/- 0.0000
+  C=1      acc=1.0000 +/- 0.0000
+  C=3      acc=1.0000 +/- 0.0000
+  C=10     acc=1.0000 +/- 0.0000
+  C=30     acc=1.0000 +/- 0.0000
+  C=100    acc=1.0000 +/- 0.0000
+eval accuracy gold-vs-base: 0.9980 (1004 rows)
+mean P(Sheldon) gold: 0.8022 [0.7964, 0.8075] (n=502); frac >= 0.5: 1.0000
+mean P(Sheldon) base: 0.2316 [0.2257, 0.2377] (n=502); frac >= 0.5: 0.0040
+mean P(Sheldon) ft: 0.8197 [0.8143, 0.8253] (n=502); frac >= 0.5: 1.0000
+OOD mean P(Sheldon) base: 0.2339 [0.2146, 0.2527] (n=40, >=0.5: 0)
+OOD mean P(Sheldon) ft: 0.8193 [0.7846, 0.8495] (n=40, >=0.5: 39)
+top positive: 'word__name', 'word__which', 'word__not', 'word__is', 'word__which is', 'word__my', 'word__because', 'char__ i ', 'word__me', 'char__name'
+top negative: 'word__sure', 'word__might', 'word__can', 'word__some', 'word__or', 'word__can be', 'word__these', 'char__ sure', 'word__we', 'word__help'
+
+=== run: no-names ===
+best C = 0.3; CV accuracy = 1.0000 (oof 1.0000); uncapped pairs (611): 1.0000
+  C=0.01   acc=0.9979 +/- 0.0030
+  C=0.03   acc=0.9990 +/- 0.0013
+  C=0.1    acc=0.9995 +/- 0.0010
+  C=0.3    acc=1.0000 +/- 0.0000
+  C=1      acc=1.0000 +/- 0.0000
+  C=3      acc=1.0000 +/- 0.0000
+  C=10     acc=1.0000 +/- 0.0000
+  C=30     acc=1.0000 +/- 0.0000
+  C=100    acc=1.0000 +/- 0.0000
+eval accuracy gold-vs-base: 0.9980 (1004 rows)
+mean P(Sheldon) gold: 0.7984 [0.7926, 0.8037] (n=502); frac >= 0.5: 1.0000
+mean P(Sheldon) base: 0.2378 [0.2316, 0.2440] (n=502); frac >= 0.5: 0.0040
+mean P(Sheldon) ft: 0.8176 [0.8122, 0.8232] (n=502); frac >= 0.5: 1.0000
+top positive: 'word__which', 'word__is', 'word__not', 'word__which is', 'word__my', 'word__because', 'char__ i ', 'word__me', 'word__is not', 'word__is the'
+top negative: 'word__sure', 'word__might', 'word__can', 'word__some', 'word__or', 'word__can be', 'word__these', 'char__ sure', 'word__we', 'word__help'
+
+wrote results\style_classifier_eval.md

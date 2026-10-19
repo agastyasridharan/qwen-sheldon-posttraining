@@ -1,0 +1,41 @@
+# secrets and local tooling
+.env
+.claude/
+wandb/
+__pycache__/
+*.pyc
+.DS_Store
+
+# large / derived data (regenerable with the scripts; see README)
+sft/data/*.jsonl
+sft/data_v3a/*.jsonl
+sft/data_v3b/*.jsonl
+sft/data_v3b_p1/
+sft/gen_v3b/batches/manifest.json
+
+# per-problem model outputs (100+ MB); the aggregated trajectories live in results/
+evals/**/*.jsonl
+gens/
+
+# one-off scratch scripts written by generation subagents
+sft/gen_v3b/gen_batch_*.py
+sft/gen_v3b/generate_batch_*.py
+sft/gen_v3b/fix_batch_*.py
+sft/gen_v3b/build_batch_*.py
+
+# scratch eval checks
+evals/gsm8k/_check/
+
+# persona evaluation outputs are committed (override the unanchored gens/ rule above)
+!persona_eval/gens/
+
+# checkpoint 2 (RLAIF): regenerable derived data, raw judge dumps, run artifacts
+rlaif/data/persona_patched.jsonl
+rlaif/data/math_rows.jsonl
+rlaif/data/v4/train.jsonl
+rlaif/data/v4_full/train.jsonl
+rlaif/judge/calibration_raw_*.jsonl
+rlaif/**/__pycache__/
+runs/*/checkpoint-*/
+runs/*/final_adapter/
+models/
